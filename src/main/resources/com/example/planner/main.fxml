@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.calendarfx.view.YearMonthView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import tornadofx.control.DateTimePicker?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.HelloController">
+   <children>
+      <VBox prefHeight="720.0" prefWidth="197.0" style="-fx-background-color: #3F2B63;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="141.0" prefWidth="111.0">
+               <children>
+                  <ImageView fitHeight="73.0" fitWidth="98.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/planner.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="68.0" layoutY="87.0" prefHeight="32.0" prefWidth="62.0" text="Planer" textFill="WHITE">
+                     <font>
+                        <Font name="Serif Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="bGlowna" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="60.0" prefWidth="262.0" stylesheets="@images/css.css" text="Główna" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Button id="bDodajZadanie" fx:id="bDodajZadanie" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="66.0" prefWidth="253.0" stylesheets="@images/css.css" text="Dodaj zadanie" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Button id="bUstawBudzik" fx:id="bUstawBudzik" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="67.0" prefWidth="255.0" stylesheets="@images/css.css" text="Ustaw budzik" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/clock.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Button id="bUstawienia" fx:id="bUstawienia" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="64.0" prefWidth="259.0" stylesheets="@images/css.css" text="Ustawienia" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/setting.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+            <Pane prefHeight="271.0" prefWidth="180.0" />
+            <Button fx:id="bWyjscie" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="56.0" prefWidth="258.0" stylesheets="@images/css.css" text="Wyjście" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <Pane fx:id="panelZadania" layoutX="942.0" layoutY="419.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="34.0" text="Tytuł" textFill="WHITE" />
+            <Label layoutX="1.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" text="DataOd" textFill="WHITE" />
+            <Label layoutY="25.0" text="Lokalizacja" textFill="WHITE" />
+            <Label layoutX="1.0" layoutY="83.0" prefHeight="17.0" prefWidth="48.0" text="DataDo" textFill="WHITE" />
+            <Label fx:id="lTytulBaza" layoutX="75.0" prefHeight="17.0" prefWidth="103.0" text="brak tytułu" textFill="WHITE" />
+            <Label fx:id="lLokalizacjaBaza" layoutX="75.0" layoutY="25.0" prefHeight="17.0" prefWidth="103.0" textFill="WHITE" />
+            <Label fx:id="lDataOdBaza" layoutX="65.0" layoutY="53.0" prefHeight="17.0" prefWidth="137.0" textFill="WHITE" />
+            <Label fx:id="lDataDoBaza" layoutX="62.0" layoutY="83.0" prefHeight="17.0" prefWidth="137.0" textFill="WHITE" />
+            <YearMonthView />
+         </children>
+      </Pane>
+      <Pane fx:id="panelDodajZadanie" layoutX="197.0" layoutY="-3.0" opacity="0.0" prefHeight="726.0" prefWidth="1083.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="bDodajZadanieFormularz" layoutX="504.0" layoutY="396.0" mnemonicParsing="false" onAction="#dodajZadanie" prefHeight="38.0" prefWidth="144.0" style="-fx-background-color: #e0bf1b;" styleClass="button3" stylesheets="images/css.css" text="Dodaj">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <DateTimePicker fx:id="pDataDo" layoutX="482.0" layoutY="340.0" prefHeight="25.0" prefWidth="213.0" />
+            <Label layoutX="394.0" layoutY="336.0" text="Data do">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <DateTimePicker fx:id="pDataOd" layoutX="486.0" layoutY="287.0" prefHeight="25.0" prefWidth="207.0" />
+            <Label fx:id="test" layoutX="394.0" layoutY="283.0" prefHeight="32.0" prefWidth="92.0" text="Data od">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="394.0" layoutY="229.0" prefHeight="32.0" prefWidth="92.0" text="Kolor">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <ColorPicker fx:id="pKolor" layoutX="459.0" layoutY="233.0" prefHeight="25.0" prefWidth="234.0" />
+            <TextField fx:id="pLokalizacja" layoutX="512.0" layoutY="181.0" prefHeight="25.0" prefWidth="180.0" />
+            <Label layoutX="396.0" layoutY="177.0" text="Lokalizacja">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="pTytul" layoutX="470.0" layoutY="128.0" prefHeight="25.0" prefWidth="221.0" />
+            <Label fx:id="tytul" layoutX="396.0" layoutY="121.0" prefHeight="38.0" prefWidth="62.0" text="Tytuł">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="459.0" layoutY="46.0" prefHeight="63.0" prefWidth="167.0" text="Dodaj zadanie" textFill="#e0bf1b">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="panelUstawBudzik" layoutX="197.0" prefHeight="720.0" prefWidth="1083.0">
+         <children>
+            <Label layoutX="423.0" layoutY="60.0" prefHeight="46.0" prefWidth="174.0" text="Ustaw budzik" textFill="#e0bf1b">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="319.0" layoutY="117.0" prefHeight="32.0" prefWidth="82.0" text="Muzyka">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="muzykaAlarm" layoutX="423.0" layoutY="120.0" prefHeight="25.0" prefWidth="247.0" />
+            <Label layoutX="319.0" layoutY="168.0" text="Data alarmu">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <DateTimePicker fx:id="dataAlarm" layoutX="451.0" layoutY="172.0" />
+            <Button fx:id="bUstawAlarm" layoutX="451.0" layoutY="274.0" mnemonicParsing="false" onAction="#wyslanieAlarmuDoBazy" prefHeight="46.0" prefWidth="150.0" style="-fx-background-color: #e0bf1b;" text="Ustaw">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label layoutX="319.0" layoutY="219.0" prefHeight="32.0" prefWidth="137.0" text="Tytuł alarmu">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="pTytulAlarmu" layoutX="452.0" layoutY="223.0" prefHeight="25.0" prefWidth="218.0" />
+            <Pane fx:id="panelDostepneAlarmy" layoutX="385.0" layoutY="416.0" prefHeight="226.0" prefWidth="300.0" style="-fx-background-color: #f3d1a9;" styleClass="pane-zadanie" stylesheets="@images/css.css">
+               <children>
+                  <Button fx:id="bStrzalkaPrawo" layoutX="251.0" layoutY="78.0" mnemonicParsing="false" onAction="#zmienienieDostepnychAlarmowPrawo" prefHeight="32.0" prefWidth="41.0" style="-fx-background-color: #f3d1a9;">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/right-arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="lMuzykaDostepneAlarmy" alignment="TOP_CENTER" layoutY="14.0" prefHeight="19.0" prefWidth="300.0" text="Huawei Tune Living">
+                     <font>
+                        <Font name="System Italic" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lTytulDostepneAlarmy" alignment="TOP_CENTER" layoutX="-10.0" layoutY="34.0" prefHeight="36.0" prefWidth="316.0" text="Zadanie" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lDataDostepneAlarmy" alignment="TOP_CENTER" layoutX="2.0" layoutY="145.0" prefHeight="25.0" prefWidth="300.0" text="2023-01-19 19:55:00">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bStrzalkaLewo" layoutX="13.0" layoutY="76.0" mnemonicParsing="false" onAction="#zmienienieDostepnychAlarmowLewo" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: #f3d1a9;">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/left-arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fx:id="zBudzik" fitHeight="56.0" fitWidth="247.0" layoutX="122.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/clock.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lDzienDostepneAlarmy" alignment="TOP_CENTER" layoutX="-3.0" layoutY="179.0" prefHeight="30.0" prefWidth="300.0" text="Środa">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bUsuniecieAlarmu" layoutX="242.0" layoutY="15.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" style="-fx-background-color: #f3d1a9;" />
+                  <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="247.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

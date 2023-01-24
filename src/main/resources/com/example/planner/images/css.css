@@ -1,0 +1,152 @@
+.button
+{
+-fx-background-color : #3F2B63;
+}
+.button:hover
+{
+-fx-background-color : #2A1C42 ;
+}
+.button:pressed
+{
+-fx-background-color : #7156DD ;
+}
+
+.button2
+{
+    -fx-background-color : #b8b8b8;
+}
+.button2:hover
+{
+    -fx-background-color:  #898989;
+}
+.button2:pressed
+{
+    -fx-background-color: #4d4c4c;
+}
+
+.button3
+{
+    -fx-background-color : #e0bf1b;
+}
+.button3:hover
+{
+    -fx-background-color:  #f2e28f
+}
+.button3:pressed
+{
+    -fx-background-color: #f0d448;
+}
+.button4:hover
+{
+   -fx-background-color:  #141414;
+  -fx-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  -fx-transform: translate3d(0, 0, 0);
+  -fx-backface-visibility: hidden;
+  -fx-perspective: 1000px;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 100, 53, 0.8), 10, 0, 0, 0);
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.pane-radius
+{
+    -fx-background-color: #2b2b2b;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+}
+.pane-zadanie
+{
+    -fx-background-color:  #f3d1a9;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+}
+
+
+
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color:   #2D75E8;
+}
+.table-view .column-header .label{
+
+   -fx-text-fill: white;
+   -fx-font-weight: bold;
+   -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+   -fx-cell-size: 30;
+  -fx-alignment: center-left;
+  -fx-text-fill: #000000;
+  -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell:selected {
+    -fx-background-color:  rgb(127, 172, 243);
+ }
+ .table-row-cell:selected .text {
+        -fx-fill : white ;
+ 
+ }
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+	-fx-background-color: transparent;
+	-fx-border-color:derive(  #2D75E8,80%);
+	-fx-background-radius: 2em;
+	-fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive( #2D75E8,90%);
+	-fx-background-insets: 2, 0, 0;
+	-fx-background-radius: 2em;
+
+}
+
+/* chart properties */
+
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+    -fx-legend-visible: false;
+}
+.chart-plot-background {
+    -fx-background-color:transparent;
+}
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%);
+    -fx-border-width: 0px;
+}
