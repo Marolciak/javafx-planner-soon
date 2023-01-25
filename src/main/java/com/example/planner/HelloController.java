@@ -231,6 +231,7 @@ public class HelloController  extends Application implements Initializable {
         muzykaDoAlarmu();
         if(event.getSource() == bUstawAlarm)
         {
+            wymaganiaDoDodaniaBudzika();
             try {
                 ConnectionMysql.wyswietlRekordBazaAlarm();
             } catch (ParseException ex) {
@@ -352,7 +353,18 @@ public class HelloController  extends Application implements Initializable {
 
     private void wymaganiaDoDodaniaBudzika()
     {
-
+        if(muzykaAlarm.getValue() == null)
+        {
+            System.out.println("nie wybraleś muzyki");
+        }
+        else if(dataAlarm.getDateTimeValue() == null)
+        {
+            System.out.println("nie wybrales daty");
+        }
+        else if(pTytulAlarmu.getText() == "")
+        {
+            System.out.println("niew wybrales tytulu");
+        }
     }
 
     public  void muzykaStart() {
