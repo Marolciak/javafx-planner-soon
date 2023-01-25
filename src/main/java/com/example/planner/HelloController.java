@@ -103,6 +103,9 @@ public class HelloController  extends Application implements Initializable {
     @FXML
     private javafx.scene.image.ImageView zBudzik;
 
+    @FXML
+    public static  Label lIdAlarmuObecnego;
+
     int ss, mm,hh,dd,MM,y;
     int ss2, mm2,hh2,dd2,MM2,y2;
     private final String[] items = {"Squid Game" , "Huawei Tune Living","Iphone 13"};
@@ -224,7 +227,7 @@ public class HelloController  extends Application implements Initializable {
 
     }
 
-    public  void wyslanieAlarmuDoBazy(ActionEvent event) throws FileNotFoundException {
+    public  void wyslanieAlarmuDoBazy(ActionEvent event) throws FileNotFoundException, ParseException {
         muzykaDoAlarmu();
         if(event.getSource() == bUstawAlarm)
         {
@@ -234,8 +237,8 @@ public class HelloController  extends Application implements Initializable {
                 throw new RuntimeException(ex);
             }
 
-            ConnectionMysql.wyswietlRekordNajwczesniejszyAlarm();
-            //ConnectionMysql.usuniecieAlarmowZBazy();
+            //ConnectionMysql.wyswietlRekordNajwczesniejszyAlarm();
+            ConnectionMysql.usuniecieAlarmowZBazy();
             dzienTygodniaAlarm = String.valueOf(dataAlarm.getDateTimeValue().getDayOfWeek());
             ConnectionMysql.dodajAlarmDoBazy(pTytulAlarmu.getText() , (String) muzykaAlarm.getValue(),dataAlarm.getDateTimeValue(), dzienTygodniaAlarm);
             pTytulAlarmu.setText("");
@@ -245,12 +248,12 @@ public class HelloController  extends Application implements Initializable {
     }
 
     @FXML
-    public  void usuniecieAlarmuBaza(ActionEvent event)
-    {
+    public  void usuniecieAlarmuBaza(ActionEvent event) throws ParseException {
         if(event.getSource() == bUsuniecieAlarmu)
         {
+            System.out.println("usunales budzik");
             ConnectionMysql.usuniecieAlarmu();
-            ConnectionMysql.licznikIdAlarm = ConnectionMysql.licznikIdAlarm + 1;
+            ConnectionMysql.wyswietlRekordBazaAlarm();
         }
     }
 
@@ -285,6 +288,7 @@ public class HelloController  extends Application implements Initializable {
 
     private void wyswietlDostepneAlarmy() throws ParseException {
         ConnectionMysql.wyswietlRekordBazaAlarm();
+        //lIdAlarmuObecnego.setText(ConnectionMysql.tablicaId[licznikAlarmy]);
         lDataDostepneAlarmy.setText(ConnectionMysql.tablicaData[licznikAlarmy]);
         lMuzykaDostepneAlarmy.setText(ConnectionMysql.tablicaMuzyka[licznikAlarmy]);
         lTytulDostepneAlarmy.setText(ConnectionMysql.tablicaTytul[licznikAlarmy]);
@@ -296,11 +300,13 @@ public class HelloController  extends Application implements Initializable {
     public  void zmienienieDostepnychAlarmowPrawo(ActionEvent event) throws ParseException {
         if (event.getSource() == bStrzalkaPrawo)
         {
-            System.out.println("kliknales przycisk");
-            if(ConnectionMysql.iloscAlarmowBaza > licznikAlarmy +2)
-                licznikAlarmy++;
             ConnectionMysql.wyswietlRekordBazaAlarm();
+            System.out.println("kliknales przycisk");
+            if(ConnectionMysql.iloscAlarmowBaza > licznikAlarmy +1)
+                licznikAlarmy++;
+
             wyswietlDostepneAlarmy();
+            //System.out.println(lIdAlarmuObecnego.getText());
 
         }
 
@@ -315,6 +321,7 @@ public class HelloController  extends Application implements Initializable {
             ConnectionMysql.wyswietlRekordBazaAlarm();
             wyswietlDostepneAlarmy();
 
+            //System.out.println(lIdAlarmuObecnego.getText());
 
         }
 
@@ -340,6 +347,11 @@ public class HelloController  extends Application implements Initializable {
         }catch (Exception e){
             System.out.println(e);
         }
+
+    }
+
+    private void wymaganiaDoDodaniaBudzika()
+    {
 
     }
 

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="650.0" stylesheets="@images/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.BudzikController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="453.0" stylesheets="@images/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.BudzikController">
    <children>
-      <Pane fx:id="mainPane" layoutX="102.0" layoutY="73.0" prefHeight="379.0" prefWidth="447.0" style="-fx-background-color: #141414;" styleClass="pane-radius" stylesheets="@images/css.css">
+      <Pane fx:id="mainPane" layoutX="3.0" layoutY="14.0" prefHeight="379.0" prefWidth="447.0" style="-fx-background-color: #141414;" styleClass="pane-radius" stylesheets="@images/css.css">
          <children>
             <Button fx:id="bWylaczAlarm" layoutX="183.0" layoutY="240.0" mnemonicParsing="false" onAction="#wylaczenieAlarmu" prefHeight="65.0" prefWidth="65.0" style="-fx-background-color: #141414;">
                <graphic>

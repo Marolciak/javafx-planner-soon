@@ -2,12 +2,9 @@ package com.example.planner;
 import javafx.scene.paint.Color;
 
 import java.sql.*;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class ConnectionMysql {
 
@@ -35,7 +32,10 @@ public class ConnectionMysql {
 
     public static String[] tablicaDzien = new String[150];
 
+    public static String[] tablicaId = new String[150];
     public static int licznikTablicyAlarmy;
+
+
 
 
     public static void dodajZadanieDoBazy(String tytul, String lokalizacja, Color kolor, LocalDateTime DataOd, LocalDateTime DataDo) {
@@ -148,6 +148,7 @@ public class ConnectionMysql {
             int i = 0;
             while(rs.next())
             {
+                tablicaId[i] = String.valueOf(rs.getString(1));
                 tablicaTytul[i] = rs.getString(2);
                 tablicaMuzyka[i] = String.valueOf(rs.getString(3));
                 tablicaData[i] = String.valueOf(rs.getString(4));
@@ -165,12 +166,14 @@ public class ConnectionMysql {
             iloscAlarmowBaza = rs2.getInt(1);
 
 
+            //PreparedStatement st3 = con.prepareStatement("select * from alarmy where data > CURRENT_TIMESTAMP order by data asc limit 1;");
             PreparedStatement st3 = con.prepareStatement("select * from alarmy where data > CURRENT_TIMESTAMP order by data asc limit 1;");
             //PreparedStatement st3 = con.prepareStatement("select * from alarmy order by data asc;");
             ResultSet rs3 = st3.executeQuery();
             doFormatowania = "2030-10-10 10:10:10";
             if(rs3.next())
             {
+
                 tytulDoAlarmuObecnego = rs3.getString(2);
                 muzykaDoAlarmuObecnego = rs3.getString(3);
                 dataNajwczesniejszyAlarm = rs3.getString(4);
@@ -200,7 +203,7 @@ public class ConnectionMysql {
         }
     }
 
-    /*public static void usuniecieAlarmowZBazy(){
+    public static void usuniecieAlarmowZBazy(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/planner", "root", "");
@@ -211,17 +214,25 @@ public class ConnectionMysql {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }*/
+    }
     public static void usuniecieAlarmu() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/planner", "root", "");
-            PreparedStatement st = con.prepareStatement("delete from alarmy where id = " + licznikIdAlarm);
+            //PreparedStatement st = con.prepareStatement("delete from alarmy where tytul = "  + " " + " " );
+            wyswietlRekordBazaAlarm();
+            //PreparedStatement st = con.prepareStatement("\"INSERT INTO `alarmy` VALUES (NULL,'\" + tytul  +\"' , '\" + muzyka + \"' , '\" + data + \"' , '\" + dzienTygodnia + \"' )\"")
+            //PreparedStatement st = con.prepareStatement("delete from alarmy where tytul = '" + tablicaTytul[licznikTablicyAlarmy] + "' and muzyka =  '" + tablicaMuzyka[licznikTablicyAlarmy] + "' and data =  '" +
+                //    tablicaData[licznikTablicyAlarmy] + "' ");
+            PreparedStatement st = con.prepareStatement("delete from alarmy where id = '" + tablicaId[HelloController.licznikAlarmy] + "'   ;");
+
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 

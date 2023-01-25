@@ -255,12 +255,14 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="bUsuniecieAlarmu" layoutX="242.0" layoutY="15.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="34.0" style="-fx-background-color: #f3d1a9;" />
-                  <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="247.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/close.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="bUsuniecieAlarmu" layoutX="242.0" layoutY="15.0" mnemonicParsing="false" onAction="#usuniecieAlarmuBaza" prefHeight="38.0" prefWidth="34.0" style="-fx-background-color: #f3d1a9;">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </Pane>
          </children>
