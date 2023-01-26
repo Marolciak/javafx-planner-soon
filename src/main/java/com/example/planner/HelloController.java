@@ -118,6 +118,8 @@ public class HelloController  extends Application implements Initializable {
 
     public static int licznikAlarmy = 0;
 
+    public static LocalDateTime obecnyCzas;
+
 
 
     @Override
@@ -249,6 +251,7 @@ public class HelloController  extends Application implements Initializable {
             {
                 System.out.println("blad dzien tygodnia");
             }
+            zamianaDniTygodniaNaPolskie(dzienTygodniaAlarm);
             ConnectionMysql.dodajAlarmDoBazy(pTytulAlarmu.getText() , (String) muzykaAlarm.getValue(),dataAlarm.getDateTimeValue(), dzienTygodniaAlarm);
             pTytulAlarmu.setText("");
             muzykaAlarm.setValue("");
@@ -362,6 +365,7 @@ public class HelloController  extends Application implements Initializable {
     public void wymaganiaDoDodaniaBudzika(ActionEvent event) throws FileNotFoundException, ParseException {
         if(event.getSource() == bUstawAlarm)
         {
+           //String lokalnaData = obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             if(muzykaAlarm.getValue() == null)
             {
                 zaladujScene("wymaganieAlarm.fxml");
@@ -380,6 +384,37 @@ public class HelloController  extends Application implements Initializable {
                 dataAlarm.setDateTimeValue(null);
                 pTytulAlarmu.setText(null);
             }
+
+        }
+    }
+
+    public void zamianaDniTygodniaNaPolskie(String dzienTygodnia)
+    {
+        switch (dzienTygodnia)
+        {
+            case "MONDAY":
+                dzienTygodniaAlarm  = "Poniedziałek";
+                break;
+            case "TUESDAY":
+                dzienTygodniaAlarm  = "Wtorek";
+                break;
+            case "WEDNESDAY":
+                dzienTygodniaAlarm  = "Środa";
+                break;
+            case "THURSDAY":
+                dzienTygodniaAlarm  = "Czwartek";
+                break;
+            case "FRIDAY":
+                dzienTygodniaAlarm  = "Piątek";
+                break;
+            case "SATURDAY":
+                dzienTygodniaAlarm  = "Sobota";
+                break;
+            case "SUNDAY":
+                dzienTygodniaAlarm  = "Niedziela";
+                break;
+
+
 
         }
     }
