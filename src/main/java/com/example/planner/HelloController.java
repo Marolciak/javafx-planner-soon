@@ -126,6 +126,9 @@ public class HelloController  extends Application implements Initializable {
         panelDodajZadanie.setVisible(false);
         panelUstawBudzik.setVisible(false);
         muzykaAlarm.getItems().addAll(items);
+        //muzykaAlarm.setValue("Iphone 13");
+        dataAlarm.setDateTimeValue(null);
+        pTytulAlarmu.setText(null);
 
 
         try {
@@ -227,11 +230,10 @@ public class HelloController  extends Application implements Initializable {
 
     }
 
-    public  void wyslanieAlarmuDoBazy(ActionEvent event) throws FileNotFoundException, ParseException {
+    public  void wyslanieAlarmuDoBazy() throws FileNotFoundException, ParseException {
         muzykaDoAlarmu();
-        if(event.getSource() == bUstawAlarm)
-        {
-            wymaganiaDoDodaniaBudzika();
+
+
             try {
                 ConnectionMysql.wyswietlRekordBazaAlarm();
             } catch (ParseException ex) {
@@ -240,12 +242,18 @@ public class HelloController  extends Application implements Initializable {
 
             //ConnectionMysql.wyswietlRekordNajwczesniejszyAlarm();
             ConnectionMysql.usuniecieAlarmowZBazy();
-            dzienTygodniaAlarm = String.valueOf(dataAlarm.getDateTimeValue().getDayOfWeek());
+            try
+            {
+                dzienTygodniaAlarm = String.valueOf(dataAlarm.getDateTimeValue().getDayOfWeek());
+            }catch (Exception e)
+            {
+                System.out.println("blad dzien tygodnia");
+            }
             ConnectionMysql.dodajAlarmDoBazy(pTytulAlarmu.getText() , (String) muzykaAlarm.getValue(),dataAlarm.getDateTimeValue(), dzienTygodniaAlarm);
             pTytulAlarmu.setText("");
             muzykaAlarm.setValue("");
             System.out.println(dzienTygodniaAlarm);
-        }
+
     }
 
     @FXML
@@ -351,19 +359,28 @@ public class HelloController  extends Application implements Initializable {
 
     }
 
-    private void wymaganiaDoDodaniaBudzika()
-    {
-        if(muzykaAlarm.getValue() == null)
+    public void wymaganiaDoDodaniaBudzika(ActionEvent event) throws FileNotFoundException, ParseException {
+        if(event.getSource() == bUstawAlarm)
         {
-            System.out.println("nie wybraleś muzyki");
-        }
-        else if(dataAlarm.getDateTimeValue() == null)
-        {
-            System.out.println("nie wybrales daty");
-        }
-        else if(pTytulAlarmu.getText() == "")
-        {
-            System.out.println("niew wybrales tytulu");
+            if(muzykaAlarm.getValue() == null)
+            {
+                zaladujScene("wymaganieAlarm.fxml");
+                System.out.println("wybierz muzyke");
+            }
+            else if(dataAlarm.getDateTimeValue() == null)
+            {
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else if(pTytulAlarmu.getText() == null)
+                zaladujScene("wymaganieAlarm.fxml");
+            else
+            {
+                wyslanieAlarmuDoBazy();
+                muzykaAlarm.setValue(null);
+                dataAlarm.setDateTimeValue(null);
+                pTytulAlarmu.setText(null);
+            }
+
         }
     }
 
