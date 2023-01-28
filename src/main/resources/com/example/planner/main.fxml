@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import tornadofx.control.DateTimePicker?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.HelloController">
+<AnchorPane fx:id="mainPsane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.HelloController">
    <children>
       <VBox prefHeight="720.0" prefWidth="197.0" style="-fx-background-color: #3F2B63;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -226,7 +226,7 @@
                         <Font name="System Italic" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lTytulDostepneAlarmy" alignment="TOP_CENTER" layoutX="-10.0" layoutY="34.0" prefHeight="36.0" prefWidth="316.0" text="Zadanie" textAlignment="JUSTIFY">
+                  <Label fx:id="lTytulDostepneAlarmy" alignment="TOP_CENTER" layoutX="-10.0" layoutY="34.0" prefHeight="36.0" prefWidth="316.0" text="zadanie" textAlignment="JUSTIFY">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -255,7 +255,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="bUsuniecieAlarmu" layoutX="242.0" layoutY="15.0" mnemonicParsing="false" onAction="#usuniecieAlarmuBaza" prefHeight="38.0" prefWidth="34.0" style="-fx-background-color: #f3d1a9;">
+                  <Button fx:id="bUsuniecieAlarmu" layoutX="232.0" layoutY="8.0" mnemonicParsing="false" onAction="#usuniecieAlarmuBaza" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #f3d1a9;">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>

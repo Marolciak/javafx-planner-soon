@@ -2,11 +2,16 @@ package com.example.planner;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +30,8 @@ public class BudzikController implements Initializable {
     @FXML
     private Pane mainPane;
     @FXML
+    private AnchorPane anchorPane;
+    @FXML
     public javafx.scene.control.Label lDataAlarmu;
     @FXML
     public javafx.scene.control.Label lGodzinaAlarmu;
@@ -37,6 +44,7 @@ public class BudzikController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle ) {
         //new animatefx.animation.BounceIn(bWylaczAlarm).play();
+
         try {
             ConnectionMysql.wyswietlRekordBazaAlarm();
         } catch (ParseException e) {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="288.0" style="-fx-background-color: #141414;" styleClass="pane-radius" stylesheets="@images/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.AlarmController">
+   <children>
+      <Label fx:id="napisOstrzezeniaAlarm" alignment="CENTER" layoutX="1.0" layoutY="49.0" prefHeight="85.0" prefWidth="288.0" text="Pola potrzebne do dodania alarmu są puste." textFill="#d7d7d7">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="bZakceptowaniaOstrzezeniaAlarmu" layoutX="102.0" layoutY="164.0" mnemonicParsing="false" onAction="#wylaczenieOkna" prefHeight="25.0" prefWidth="85.0" styleClass="pane-radius" text="OK" textFill="#d7d7d7">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

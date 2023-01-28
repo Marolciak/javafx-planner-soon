@@ -120,6 +120,8 @@ public class HelloController  extends Application implements Initializable {
 
     public static LocalDateTime obecnyCzas;
 
+    public static String napisDoWymagania;
+
 
 
     @Override
@@ -368,15 +370,32 @@ public class HelloController  extends Application implements Initializable {
            //String lokalnaData = obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             if(muzykaAlarm.getValue() == null)
             {
+                napisDoWymagania = "Pole muzyka jest puste.";
                 zaladujScene("wymaganieAlarm.fxml");
+                //AlarmController.napisOstrzezeniaAlarm.setText("test");
                 System.out.println("wybierz muzyke");
+
             }
             else if(dataAlarm.getDateTimeValue() == null)
             {
+                napisDoWymagania = " Pole data jest puste.";
                 zaladujScene("wymaganieAlarm.fxml");
+
+                //AlarmController.napisOstrzezeniaAlarm.setText("test1");
             }
             else if(pTytulAlarmu.getText() == null)
+            {
+                napisDoWymagania = " Pole tytuł jest puste.";
                 zaladujScene("wymaganieAlarm.fxml");
+            }
+
+            else if(pTytulAlarmu.getLength() >  20)
+            {
+                napisDoWymagania = "Tytuł nie może przekraczać 20 znaków.";
+                zaladujScene("wymaganieAlarm.fxml");
+
+
+            }
             else
             {
                 wyslanieAlarmuDoBazy();

@@ -47,6 +47,7 @@ public class ConnectionMysql {
             Statement stmt = con.createStatement();
             int rs = stmt.executeUpdate("INSERT INTO `zadania` VALUES (NULL,'" + tytul  +"' , '" + lokalizacja + "' , '" + kolor + "' ,'" + DataOd + "' , '" + DataDo + "' )");
 
+            con.close();
         } catch (Exception evt) {
             System.out.println(evt);
         }
@@ -61,7 +62,7 @@ public class ConnectionMysql {
                     "jdbc:mysql://localhost:3306/planner", "root", "");
             Statement stmt = con.createStatement();
             int rs = stmt.executeUpdate("INSERT INTO `alarmy` VALUES (NULL,'" + tytul  +"' , '" + muzyka + "' , '" + data + "' , '" + dzienTygodnia + "' )");
-
+            con.close();
         } catch (Exception evt) {
             System.out.println(evt);
         }
@@ -90,7 +91,7 @@ public class ConnectionMysql {
             /*Statement st2 = con.createStatement();
             ResultSet rs2 = st.executeQuery("SELECT COUNT(id) as count from alarmy");
             rs2.next();*/
-
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -127,6 +128,7 @@ public class ConnectionMysql {
             }catch (Exception e){
                 System.out.println("brak najnowszego alarmu");
             }
+            con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -194,7 +196,7 @@ public class ConnectionMysql {
 
 
 
-
+            con.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -209,6 +211,7 @@ public class ConnectionMysql {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/planner", "root", "");
             PreparedStatement st = con.prepareStatement("DELETE FROM `alarmy` WHERE data < CURRENT_TIMESTAMP;");
             st.executeUpdate();
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -227,6 +230,7 @@ public class ConnectionMysql {
             PreparedStatement st = con.prepareStatement("delete from alarmy where id = '" + tablicaId[HelloController.licznikAlarmy] + "'   ;");
 
             st.executeUpdate();
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
