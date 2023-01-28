@@ -29,8 +29,10 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class HelloController  extends Application implements Initializable {
@@ -117,10 +119,11 @@ public class HelloController  extends Application implements Initializable {
     public static Boolean weryfikacjaAlarmu = false;
 
     public static int licznikAlarmy = 0;
-
-    public static LocalDateTime obecnyCzas;
-
+    
     public static String napisDoWymagania;
+    public LocalDateTime dataAlarmu;
+    public LocalDateTime obecnyCzas;
+
 
 
 
@@ -367,7 +370,17 @@ public class HelloController  extends Application implements Initializable {
     public void wymaganiaDoDodaniaBudzika(ActionEvent event) throws FileNotFoundException, ParseException {
         if(event.getSource() == bUstawAlarm)
         {
-           //String lokalnaData = obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            try {
+                obecnyCzas = LocalDateTime.now();
+                obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                dataAlarmu = dataAlarm.getDateTimeValue();
+                dataAlarmu.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }catch (Exception e)
+            {
+
+            }
+
+
             if(muzykaAlarm.getValue() == null)
             {
                 napisDoWymagania = "Pole muzyka jest puste.";
@@ -392,6 +405,13 @@ public class HelloController  extends Application implements Initializable {
             else if(pTytulAlarmu.getLength() >  20)
             {
                 napisDoWymagania = "Tytuł nie może przekraczać 20 znaków.";
+                zaladujScene("wymaganieAlarm.fxml");
+
+
+            }
+            else if(obecnyCzas.compareTo(dataAlarmu) > 0)
+            {
+                napisDoWymagania = "Budzik nie może zostać ustawiony na przeszłość!";
                 zaladujScene("wymaganieAlarm.fxml");
 
 

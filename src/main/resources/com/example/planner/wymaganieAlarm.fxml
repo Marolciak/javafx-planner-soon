@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="288.0" style="-fx-background-color: #141414;" styleClass="pane-radius" stylesheets="@images/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.AlarmController">
    <children>
-      <Label fx:id="napisOstrzezeniaAlarm" alignment="CENTER" layoutX="1.0" layoutY="49.0" prefHeight="85.0" prefWidth="288.0" text="Pola potrzebne do dodania alarmu są puste." textFill="#d7d7d7">
+      <Label fx:id="napisOstrzezeniaAlarm" alignment="CENTER" ellipsisString="" layoutX="1.0" layoutY="49.0" lineSpacing="2.0" prefHeight="95.0" prefWidth="288.0" text="Pola potrzebne do dodania alarmu są puste." textAlignment="CENTER" textFill="#d7d7d7" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
