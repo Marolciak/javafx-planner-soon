@@ -12,11 +12,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-<<<<<<< HEAD
       <Button fx:id="bZakceptowaniaOstrzezeniaAlarmu" layoutX="102.0" layoutY="164.0" mnemonicParsing="false" onAction="#wylaczenieOkna" prefHeight="25.0" prefWidth="85.0" styleClass="pane-radius" text="OK" textFill="#d7d7d7">
-=======
-      <Button  fx:id="bZakceptowaniaOstrzezeniaAlarmu" layoutX="102.0" layoutY="164.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" styleClass="pane-radius" text="OK" textFill="#d7d7d7" onAction="#wylaczenieOkna">
->>>>>>> origin/beta
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
