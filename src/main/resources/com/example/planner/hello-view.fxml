@@ -67,7 +67,7 @@
                   <Insets left="20.0" />
                </padding>
             </Button>
-            <Button id="bUstawBudzik" fx:id="bUstawBudzik" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="67.0" prefWidth="255.0" stylesheets="@images/css.css" text="Ustaw budzik" textFill="WHITE">
+            <Button  fx:id="bUstawBudzik" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="67.0" prefWidth="255.0" stylesheets="@images/css.css" text="Ustaw budzik" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

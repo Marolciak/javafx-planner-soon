@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -26,10 +27,13 @@ public class HomeController implements Initializable {
 
     private void zaladujScene(String fxml) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxml));
+            Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Planner");
+            stage.setScene(scene);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.show();
             //new animatefx.animation.SlideInDown(mainPane).play();
 

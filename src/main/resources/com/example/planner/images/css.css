@@ -1,15 +1,22 @@
-.button
+.button1
 {
--fx-background-color : #3F2B63;
+    -fx-background-color : #353a55;
+
 }
-.button:hover
-{
--fx-background-color : #2A1C42 ;
+.button1:hover{
+    -fx-background-color : #303551;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+    -fx-text-fill: rgb(255, 255, 255);
 }
-.button:pressed
-{
--fx-background-color : #7156DD ;
-}
+/*.button1:pressed{
+    -fx-background-color : #303551;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+    -fx-text-fill: #6d7185 ;
+}*/
 
 .button2
 {
@@ -27,6 +34,10 @@
 .button3
 {
     -fx-background-color : #e0bf1b;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+     -fx-border-width: 3px;
+     -fx-border-color: black;
 }
 .button3:hover
 {
@@ -34,7 +45,7 @@
 }
 .button3:pressed
 {
-    -fx-background-color: #f0d448;
+    -fx-background-color: #fab505;
 }
 .button4:hover
 {
@@ -45,27 +56,37 @@
   -fx-perspective: 1000px;
   -fx-effect: dropshadow(three-pass-box, rgba(0, 100, 53, 0.8), 10, 0, 0, 0);
 }
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
+.logo-pane{
+    -fx-background-color : #738cf2;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 3px; 
+}
+.main-pane{
+    -fx-background-color : #ebeef4;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;    
+}
 
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+.left-pane{
+    -fx-background-color : #353a55;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 28px;
+    -fx-border-width: 3px; 
 }
 
 .pane-radius
 {
     -fx-background-color: #2b2b2b;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+}
+.pane-radius2
+{
+    -fx-background-color: #e0bf1b;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
     -fx-border-width: 3px;
