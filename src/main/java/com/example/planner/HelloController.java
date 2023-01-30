@@ -101,6 +101,8 @@ public class HelloController  extends Application implements Initializable {
     public static AnchorPane mainPane;
     @FXML
     public Pane panelDostepneAlarmy;
+    @FXML
+    public Pane panelGlowny;
 
     @FXML
     private javafx.scene.image.ImageView zBudzik;
@@ -118,6 +120,23 @@ public class HelloController  extends Application implements Initializable {
     @FXML
     private Label lAktualnyDzienTygodnia;
 
+    @FXML
+    private Label lAktualnaData1;
+    @FXML
+    private Label lAktualnaGodzina1;
+    @FXML
+    private Label lAktualnyDzienTygodnia1;
+
+    @FXML
+    private Label lIloscZadanDzisiaj;
+    @FXML
+    private Label lIloscAlarmowDzisiaj2;
+    @FXML
+    public Label lAktywnyCytat;
+    @FXML
+    public Label lAktywnyAutor;
+    @FXML
+    public Button bNastepnyCytat;
     int ss, mm,hh,dd,MM,y;
     int ss2, mm2,hh2,dd2,MM2,y2;
     private final String[] items = {"Squid Game" , "Huawei Tune Living","Iphone 13"};
@@ -129,6 +148,7 @@ public class HelloController  extends Application implements Initializable {
     public static Boolean weryfikacjaAlarmu = false;
 
     public static int licznikAlarmy = 0;
+    public static int licznikCytaty = 0;
     
     public static String napisDoWymagania;
     public LocalDateTime dataAlarmu;
@@ -147,6 +167,12 @@ public class HelloController  extends Application implements Initializable {
         //muzykaAlarm.setValue("Iphone 13");
         dataAlarm.setDateTimeValue(null);
         pTytulAlarmu.setText(null);
+        ConnectionMysql.wyswietlRekordBazaZadanie();
+        try {
+            wyswietlDostepneCytaty();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
 
         try {
@@ -184,10 +210,15 @@ public class HelloController  extends Application implements Initializable {
                         int hr = dates.getHour();
                         int sc = dates.getSecond();
 
+
                         lAktualnaData.setText(dates.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                         lAktualnaGodzina.setText(dates.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                        lAktualnaData1.setText(dates.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                        lAktualnaGodzina1.setText(dates.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                         pomDzien = String.valueOf(dates.getDayOfWeek());
                         zamianaDniTygodniaNaPolskie(pomDzien);
+                        lAktualnyDzienTygodnia.setText(pomDzien);
+                        lAktualnyDzienTygodnia1.setText(pomDzien);
 
 
 
@@ -310,25 +341,30 @@ public class HelloController  extends Application implements Initializable {
         if (event.getSource() == bGlowna)
         {
             //panelDodajZadanie.setVisible(false);
+            panelGlowny.setVisible(true);
             panelUstawBudzik.setVisible(false);
             //panelZadania.setVisible(true);
+            wyswietlDostepneCytaty();
         }
         if (event.getSource() == bDodajZadanie)
         {
             //panelDodajZadanie.setVisible(true);
             panelUstawBudzik.setVisible(false);
+            panelGlowny.setVisible(false);
            //panelZadania.setVisible(false);
         }
         if (event.getSource() == bUstawBudzik)
         {
             //panelDodajZadanie.setVisible(false);
             panelUstawBudzik.setVisible(true);
+            panelGlowny.setVisible(false);
             ConnectionMysql.wyswietlRekordBazaAlarm();
             wyswietlDostepneAlarmy();
         }
         if (event.getSource() == bUstawienia)
         {
             //panelDodajZadanie.setVisible(false);
+            panelGlowny.setVisible(false);
             panelUstawBudzik.setVisible(false);
         }
     }
@@ -343,6 +379,8 @@ public class HelloController  extends Application implements Initializable {
         lDzienDostepneAlarmy.setText(ConnectionMysql.tablicaDzien[licznikAlarmy]);
         lIloscAlarmow.setText(String.valueOf(ConnectionMysql.iloscAlarmowBaza));
         lIloscAlarmowDzisiaj.setText(String.valueOf(ConnectionMysql.iloscAlarmowBazaDzisiaj));
+        lIloscAlarmowDzisiaj2.setText(String.valueOf(ConnectionMysql.iloscAlarmowBazaDzisiaj));
+        lIloscZadanDzisiaj.setText(String.valueOf(ConnectionMysql.iloscZadanBaza));
 
     }
 
@@ -361,6 +399,7 @@ public class HelloController  extends Application implements Initializable {
         }
 
     }
+
     @FXML
     public  void zmienienieDostepnychAlarmowLewo(ActionEvent event) throws ParseException {
         if (event.getSource() == bStrzalkaLewo)
@@ -376,6 +415,35 @@ public class HelloController  extends Application implements Initializable {
         }
 
     }
+    private void wyswietlDostepneCytaty() throws ParseException {
+        ConnectionMysql.wyswietlRekordBazaCytat();
+        //lIdAlarmuObecnego.setText(ConnectionMysql.tablicaId[licznikAlarmy]);
+        lAktywnyCytat.setText(ConnectionMysql.tablicaCytat[licznikCytaty]);
+        lAktywnyAutor.setText(ConnectionMysql.tablicaAutor[licznikCytaty]);
+
+    }
+
+    @FXML
+    public  void zmienienieDostepnychCytatowPrawo(ActionEvent event) throws ParseException {
+        if (event.getSource() == bNastepnyCytat)
+        {
+            ConnectionMysql.wyswietlRekordBazaCytat();
+            System.out.println("kliknales przycisk");
+            if(ConnectionMysql.iloscCytatów > licznikCytaty + 1)
+                licznikCytaty++;
+            else if(ConnectionMysql.iloscCytatów >= licznikCytaty)
+                licznikCytaty = 0;
+
+
+            wyswietlDostepneCytaty();
+            //System.out.println(lIdAlarmuObecnego.getText());
+
+        }
+
+    }
+
+
+
     @FXML
     public  void muzykaDoAlarmu() throws FileNotFoundException {
         try {
@@ -466,7 +534,7 @@ public class HelloController  extends Application implements Initializable {
         {
             case "MONDAY":
                 dzienTygodniaAlarm  = "Poniedziałek";
-                  pomDzien = "Poniedziałek";
+                pomDzien = "Poniedziałek";
                 break;
             case "TUESDAY":
                 dzienTygodniaAlarm  = "Wtorek";

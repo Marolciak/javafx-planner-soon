@@ -34,7 +34,15 @@ public class ConnectionMysql {
     public static String[] tablicaDzien = new String[150];
 
     public static String[] tablicaId = new String[150];
-    public static int licznikTablicyAlarmy;
+
+    public static String[] tablicaCytat = new String[150];
+
+    public static String[] tablicaAutor = new String[150];
+
+
+    public static int iloscZadanBaza;
+    public static int iloscCytatów;
+
 
 
 
@@ -70,6 +78,7 @@ public class ConnectionMysql {
 
     }
 
+
     public static void wyswietlRekordBazaZadanie(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -88,6 +97,11 @@ public class ConnectionMysql {
             System.out.println(kolorRekord);
             System.out.println(dataOdRekord);
             System.out.println(dataDoRekord);
+
+            PreparedStatement st2 = con.prepareStatement("select COUNT(id) as count  from zadania where SUBSTRING(DataOd,1,10) = CURRENT_DATE");
+            ResultSet rs2 = st2.executeQuery();
+            rs2.next();
+            iloscZadanBaza = rs2.getInt(1);
 
             /*Statement st2 = con.createStatement();
             ResultSet rs2 = st.executeQuery("SELECT COUNT(id) as count from alarmy");
@@ -134,6 +148,33 @@ public class ConnectionMysql {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void wyswietlRekordBazaCytat()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/planner" , "root" , "");
+            PreparedStatement st = con.prepareStatement("select * from cytaty ;");
+            ResultSet rs = st.executeQuery();
+            int i = 0;
+            while (rs.next())
+            {
+                tablicaCytat[i] = rs.getString(2);
+                tablicaAutor[i] = rs.getString(3);
+                i++;
+            }
+
+            PreparedStatement st2 = con.prepareStatement("select COUNT(id) from cytaty ;");
+            ResultSet rs2 = st2.executeQuery();
+            rs2.next();
+            iloscCytatów = rs2.getInt(1);
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
     public static void wyswietlRekordBazaAlarm() throws ParseException {

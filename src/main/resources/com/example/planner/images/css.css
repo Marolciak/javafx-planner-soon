@@ -11,7 +11,16 @@
     -fx-border-width: 3px; 
     -fx-text-fill: rgb(255, 255, 255);
 }
-
+.button-next{
+    -fx-background-color: #738cf2;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-text-fill : #6d7185;
+}
+.button-next:hover{
+    -fx-background-color : #5373f5;
+    -fx-text-fill : #ffffff;
+}
 .button2
 {
     -fx-background-color : #b8b8b8;
@@ -105,6 +114,11 @@
     -fx-background-radius: 20px;
     -fx-border-width: 3px; 
 }
+.pane-right{
+    -fx-background-color : #303551;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
 .pane-mockup
 {
     -fx-background-color : #ffffff;
@@ -142,7 +156,13 @@
     -fx-background-radius: 30px;
    
 }
-
+.pane-left-3
+{
+    -fx-background-color : #fd9898;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+}
 
 
 

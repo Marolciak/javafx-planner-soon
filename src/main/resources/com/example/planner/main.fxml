@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,7 @@
 
 <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="main-pane" stylesheets="@images/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.planner.HelloController">
    <children>
-      <Pane fx:id="panelUstawBudzik" layoutX="203.0" opacity="0.99" prefHeight="720.0" prefWidth="1077.0">
+      <Pane fx:id="panelUstawBudzik" layoutX="203.0" prefHeight="720.0" prefWidth="1077.0">
          <children>
             <Pane layoutX="64.0" layoutY="150.0" prefHeight="235.0" prefWidth="402.0" styleClass="pane-left-1">
                <children>
@@ -187,6 +188,201 @@
                </children>
             </Pane>
             <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="999.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/man.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="panelGlowny" layoutX="202.0" prefHeight="720.0" prefWidth="1077.0" styleClass="main-pane">
+         <children>
+            <Label layoutX="62.0" layoutY="56.0" prefHeight="45.0" prefWidth="282.0" text="Witaj! Użytkowniku">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="66.0" layoutY="101.0" text="Nie odkładaj na jutro tego , co możesz zrobić dzisiaj" textFill="#868686" />
+            <Label layoutX="62.0" layoutY="161.0" text="Dzisiaj" textFill="#4d4d4d">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Pane layoutX="62.0" layoutY="201.0" prefHeight="159.0" prefWidth="124.0" styleClass="pane-left-1">
+               <children>
+                  <Label fx:id="lIloscAlarmowDzisiaj2" layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="62.0" text="10" textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="71.0" text="Alarmy" textFill="WHITE" />
+                  <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="44.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/clock.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="217.0" layoutY="201.0" prefHeight="159.0" prefWidth="124.0" styleClass="pane-left-2">
+               <children>
+                  <Label fx:id="lIloscZadanDzisiaj" layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="62.0" text="5">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="71.0" text="Zadania" />
+                  <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="44.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/task.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="367.0" layoutY="201.0" prefHeight="159.0" prefWidth="124.0" styleClass="pane-left-3">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="46.0" prefWidth="62.0" text="7">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="71.0" text="Spotkania" />
+                  <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="44.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/conversation.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="689.0" layoutY="201.0" prefHeight="159.0" prefWidth="354.0" styleClass="pane-right">
+               <children>
+                  <Label fx:id="lAktualnaData1" layoutX="93.0" layoutY="14.0" prefHeight="46.0" prefWidth="169.0" text="2023-01-30" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lAktualnaGodzina1" layoutX="118.0" layoutY="60.0" prefHeight="46.0" prefWidth="124.0" text="19:55:00" textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lAktualnyDzienTygodnia1" alignment="CENTER" layoutX="115.0" layoutY="106.0" prefHeight="30.0" prefWidth="124.0" text="Poniedziałek" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="52.0" fitWidth="55.0" layoutX="285.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/aimbialyt.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label layoutX="698.0" layoutY="161.0" text="Zegar" textFill="#4d4d4d">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="62.0" layoutY="401.0" text="Najbliższe spoktania" textFill="#4d4d4d">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Pane layoutX="62.0" layoutY="442.0" prefHeight="48.0" prefWidth="257.0" styleClass="pane-mockup">
+               <children>
+                  <Label layoutX="50.0" layoutY="6.0" prefHeight="17.0" prefWidth="155.0" text="WYLOT DO USA">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="26.0" prefHeight="17.0" prefWidth="127.0" text="Jim Morrison" textFill="#616060" />
+                  <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="12.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/elf.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="205.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #ffffff;" />
+                  <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="211.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="62.0" layoutY="512.0" prefHeight="48.0" prefWidth="257.0" styleClass="pane-mockup">
+               <children>
+                  <Label layoutX="50.0" layoutY="6.0" prefHeight="17.0" prefWidth="155.0" text="WYLOT DO USA">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="26.0" prefHeight="17.0" prefWidth="127.0" text="Jim Morrison" textFill="#616060" />
+                  <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="12.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/elf.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="205.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #ffffff;" />
+                  <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="211.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="62.0" layoutY="582.0" prefHeight="48.0" prefWidth="257.0" styleClass="pane-mockup">
+               <children>
+                  <Label layoutX="50.0" layoutY="6.0" prefHeight="17.0" prefWidth="155.0" text="WYLOT DO USA">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="26.0" prefHeight="17.0" prefWidth="127.0" text="Jim Morrison" textFill="#616060" />
+                  <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="12.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/elf.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="205.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #ffffff;" />
+                  <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="211.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label layoutX="457.0" layoutY="401.0" prefHeight="25.0" prefWidth="127.0" text="Codzienne cytaty" textFill="#4d4d4d">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Pane layoutX="457.0" layoutY="436.0" prefHeight="200.0" prefWidth="590.0" styleClass="pane-left-2">
+               <children>
+                  <Label fx:id="lAktywnyCytat" alignment="CENTER" ellipsisString="" layoutX="24.0" layoutY="40.0" prefHeight="46.0" prefWidth="392.0" text="Kocha się za nic. Nie istnieje żaden powód do miłości.&#10;&#10;&#10;" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lAktywnyAutor" ellipsisString="" layoutX="220.0" layoutY="100.0" prefHeight="41.0" prefWidth="169.0" text="CARLOS RUIZ ZAFON" textFill="#868686" />
+                  <Button fx:id="bNastepnyCytat" alignment="CENTER" layoutX="25.0" layoutY="138.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#zmienienieDostepnychCytatowPrawo" prefHeight="45.0" prefWidth="124.0" styleClass="button-next" text="Następny" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/right-arrow.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="CLOSED_HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="427.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/list.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="39.0" fitWidth="52.0" layoutX="877.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="1006.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/man.png" />
                </image>
