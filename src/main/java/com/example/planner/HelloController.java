@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
@@ -137,9 +138,29 @@ public class HelloController  extends Application implements Initializable {
     public Label lAktywnyAutor;
     @FXML
     public Button bNastepnyCytat;
+    @FXML
+    public Button bZaplanujSpotkanie;
+    @FXML
+    public Pane panelZaplanujSpoktanie;
+    @FXML
+    private TextField pTytulSpotkania;
+    @FXML
+    private TextField pOsoba;
+    @FXML
+    private TextField pLokalizacjaSpotkania;
+    @FXML
+    private tornadofx.control.DateTimePicker dataSpotkanie;
+    @FXML
+    private ChoiceBox ikonaSpoktanie;
+    @FXML
+    private Button bUstawSpotkanie;
+    @FXML
+    public javafx.scene.image.ImageView test;
+
     int ss, mm,hh,dd,MM,y;
     int ss2, mm2,hh2,dd2,MM2,y2;
     private final String[] items = {"Squid Game" , "Huawei Tune Living","Iphone 13"};
+    private final String[] ikonySpotkania = {"Bus" , "Zadanie","Telewizja","Sport" ,"Samolot" ,"Samochód","Rower","Szkoła","Pizza","Dom" ,"Telefon"};
 
     public static int path;
     static MediaPlayer mediaPlayer;
@@ -152,8 +173,10 @@ public class HelloController  extends Application implements Initializable {
     
     public static String napisDoWymagania;
     public LocalDateTime dataAlarmu;
+    public LocalDateTime dataSpotkania;
     public LocalDateTime obecnyCzas;
     public String pomDzien;
+    public String ikonaPath;
 
 
 
@@ -163,10 +186,30 @@ public class HelloController  extends Application implements Initializable {
         //ConnectionMysql.wyswietlRekordBazaAlarm();
         //panelDodajZadanie.setVisible(false);
         panelUstawBudzik.setVisible(false);
+        panelZaplanujSpoktanie.setVisible(false);
         muzykaAlarm.getItems().addAll(items);
+        ikonaSpoktanie.getItems().addAll(ikonySpotkania);
         //muzykaAlarm.setValue("Iphone 13");
         dataAlarm.setDateTimeValue(null);
         pTytulAlarmu.setText(null);
+
+        pTytulSpotkania.setText(null);
+        pOsoba.setText(null);
+        dataSpotkanie.setDateTimeValue(null);
+        pLokalizacjaSpotkania.setText(null);
+        ikonaSpoktanie.setValue(null);
+
+
+        ConnectionMysql.wyswietlRekordBazaSpotkanie();
+        try
+        {
+            ikonaDoSpotkania();
+            ikonaPokaz();
+        }catch (Exception e)
+        {
+
+        }
+
         ConnectionMysql.wyswietlRekordBazaZadanie();
         try {
             wyswietlDostepneCytaty();
@@ -299,6 +342,122 @@ public class HelloController  extends Application implements Initializable {
 
     }
 
+    private  void wyslanieSpotkaniaDoBazy(){
+
+
+        ConnectionMysql.dodajSpotkanieDoBazy(pTytulSpotkania.getText() , pOsoba.getText(),dataSpotkanie.getDateTimeValue(),pLokalizacjaSpotkania.getText(), (String) ikonaSpoktanie.getValue());
+        pTytulSpotkania.setText(null);
+        pOsoba.setText(null);
+        dataSpotkanie.setDateTimeValue(null);
+        pLokalizacjaSpotkania.setText(null);
+        ikonaSpoktanie.setValue(null);
+
+
+    }
+
+    public void wymaganiaDoDodaniaSpotkania(ActionEvent event)  {
+        if(event.getSource() == bUstawSpotkanie)
+        {
+            try {
+                obecnyCzas = LocalDateTime.now();
+                obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                dataSpotkania = dataSpotkanie.getDateTimeValue();
+                dataSpotkania.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }catch (Exception e)
+            {
+
+            }
+
+            if(pTytulSpotkania.getText() == null)
+            {
+                napisDoWymagania = "Pole tytuł jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else if(pOsoba.getText() == null)
+            {
+                napisDoWymagania = "Pole klient/znajomy jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else if(dataSpotkanie.getDateTimeValue() == null)
+            {
+                napisDoWymagania = "Pole data spotkania jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else if(pLokalizacjaSpotkania.getText() == null)
+            {
+                napisDoWymagania = "Pole lokalizacja spotkania jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else if(ikonaSpoktanie.getValue() == null)
+            {
+                napisDoWymagania = "Pole ikona jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else if(obecnyCzas.compareTo(dataSpotkania) > 0)
+            {
+                napisDoWymagania = "Spotkanie nie może zostać ustawiony na przeszłość!";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+            else{
+                wyslanieSpotkaniaDoBazy();
+                ConnectionMysql.wyswietlRekordBazaSpotkanie();
+                ikonaDoSpotkania();
+                ikonaPokaz();
+            }
+
+        }
+
+    }
+
+    private void ikonaDoSpotkania(){
+        String wartoscIkona = ConnectionMysql.ikonaBazaSpotkanie;
+        //String wartoscIkona = (String) ikonaSpoktanie.getValue();
+        switch (wartoscIkona) {
+            case "Bus":
+                ikonaPath = "icon/bus.png";
+                break;
+            case "Zadanie":
+                ikonaPath = "icon/task.png";
+                break;
+            case "Telewizja":
+                ikonaPath = "icon/tv.png";
+                break;
+            case "Sport":
+                ikonaPath = "icon/sports.png";
+                break;
+            case "Samolot":
+                ikonaPath = "icon/plane.png";
+                break;
+            case "Samochód":
+                ikonaPath = "icon/car.png";
+                break;
+            case "Rower":
+                ikonaPath = "icon/bicycle.png";
+                break;
+            case "Szkoła":
+                ikonaPath = "icon/school.png";
+                break;
+            case "Pizza":
+                ikonaPath = "icon/pizza.png";
+                break;
+            case "Dom":
+                ikonaPath = "icon/house.png";
+                break;
+            case "Telefon":
+                ikonaPath = "icon/call.png";
+                break;
+
+        }
+    }
+
+    private void ikonaPokaz()
+    {
+        File file = new File(ikonaPath);
+        Image image = new Image(file.toURI().toString());
+        test.setImage(image);
+    }
+
+
     public  void wyslanieAlarmuDoBazy() throws FileNotFoundException, ParseException {
         muzykaDoAlarmu();
 
@@ -320,12 +479,72 @@ public class HelloController  extends Application implements Initializable {
             }
             zamianaDniTygodniaNaPolskie(dzienTygodniaAlarm);
             ConnectionMysql.dodajAlarmDoBazy(pTytulAlarmu.getText() , (String) muzykaAlarm.getValue(),dataAlarm.getDateTimeValue(), dzienTygodniaAlarm);
+            dataAlarm.setDateTimeValue(null);
             pTytulAlarmu.setText("");
             muzykaAlarm.setValue("");
             System.out.println(dzienTygodniaAlarm);
 
     }
 
+    public void wymaganiaDoDodaniaBudzika(ActionEvent event) throws FileNotFoundException, ParseException {
+        if(event.getSource() == bUstawAlarm)
+        {
+            try {
+                obecnyCzas = LocalDateTime.now();
+                obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                dataAlarmu = dataAlarm.getDateTimeValue();
+                dataAlarmu.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }catch (Exception e)
+            {
+
+            }
+
+
+            if(muzykaAlarm.getValue() == null)
+            {
+                napisDoWymagania = "Pole muzyka jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+                //AlarmController.napisOstrzezeniaAlarm.setText("test");
+                System.out.println("wybierz muzyke");
+
+            }
+            else if(dataAlarm.getDateTimeValue() == null)
+            {
+                napisDoWymagania = " Pole data jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+
+                //AlarmController.napisOstrzezeniaAlarm.setText("test1");
+            }
+            else if(pTytulAlarmu.getText() == null)
+            {
+                napisDoWymagania = " Pole tytuł jest puste.";
+                zaladujScene("wymaganieAlarm.fxml");
+            }
+
+            else if(pTytulAlarmu.getLength() >  20)
+            {
+                napisDoWymagania = "Tytuł nie może przekraczać 20 znaków.";
+                zaladujScene("wymaganieAlarm.fxml");
+
+
+            }
+            else if(obecnyCzas.compareTo(dataAlarmu) > 0)
+            {
+                napisDoWymagania = "Budzik nie może zostać ustawiony na przeszłość!";
+                zaladujScene("wymaganieAlarm.fxml");
+
+
+            }
+            else
+            {
+                wyslanieAlarmuDoBazy();
+                muzykaAlarm.setValue(null);
+                dataAlarm.setDateTimeValue(null);
+                pTytulAlarmu.setText(null);
+            }
+
+        }
+    }
     @FXML
     public  void usuniecieAlarmuBaza(ActionEvent event) throws ParseException {
         if(event.getSource() == bUsuniecieAlarmu)
@@ -344,6 +563,7 @@ public class HelloController  extends Application implements Initializable {
             panelGlowny.setVisible(true);
             panelUstawBudzik.setVisible(false);
             //panelZadania.setVisible(true);
+            panelZaplanujSpoktanie.setVisible(false);
             wyswietlDostepneCytaty();
         }
         if (event.getSource() == bDodajZadanie)
@@ -352,19 +572,29 @@ public class HelloController  extends Application implements Initializable {
             panelUstawBudzik.setVisible(false);
             panelGlowny.setVisible(false);
            //panelZadania.setVisible(false);
+            panelZaplanujSpoktanie.setVisible(false);
         }
         if (event.getSource() == bUstawBudzik)
         {
             //panelDodajZadanie.setVisible(false);
             panelUstawBudzik.setVisible(true);
             panelGlowny.setVisible(false);
+            panelZaplanujSpoktanie.setVisible(false);
             ConnectionMysql.wyswietlRekordBazaAlarm();
             wyswietlDostepneAlarmy();
+
+        }
+        if(event.getSource() == bZaplanujSpotkanie)
+        {
+            panelGlowny.setVisible(false);
+            panelZaplanujSpoktanie.setVisible(true);
+            panelUstawBudzik.setVisible(false);
         }
         if (event.getSource() == bUstawienia)
         {
             //panelDodajZadanie.setVisible(false);
             panelGlowny.setVisible(false);
+            panelZaplanujSpoktanie.setVisible(false);
             panelUstawBudzik.setVisible(false);
         }
     }
@@ -468,65 +698,7 @@ public class HelloController  extends Application implements Initializable {
 
     }
 
-    public void wymaganiaDoDodaniaBudzika(ActionEvent event) throws FileNotFoundException, ParseException {
-        if(event.getSource() == bUstawAlarm)
-        {
-            try {
-                obecnyCzas = LocalDateTime.now();
-                obecnyCzas.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                dataAlarmu = dataAlarm.getDateTimeValue();
-                dataAlarmu.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            }catch (Exception e)
-            {
 
-            }
-
-
-            if(muzykaAlarm.getValue() == null)
-            {
-                napisDoWymagania = "Pole muzyka jest puste.";
-                zaladujScene("wymaganieAlarm.fxml");
-                //AlarmController.napisOstrzezeniaAlarm.setText("test");
-                System.out.println("wybierz muzyke");
-
-            }
-            else if(dataAlarm.getDateTimeValue() == null)
-            {
-                napisDoWymagania = " Pole data jest puste.";
-                zaladujScene("wymaganieAlarm.fxml");
-
-                //AlarmController.napisOstrzezeniaAlarm.setText("test1");
-            }
-            else if(pTytulAlarmu.getText() == null)
-            {
-                napisDoWymagania = " Pole tytuł jest puste.";
-                zaladujScene("wymaganieAlarm.fxml");
-            }
-
-            else if(pTytulAlarmu.getLength() >  20)
-            {
-                napisDoWymagania = "Tytuł nie może przekraczać 20 znaków.";
-                zaladujScene("wymaganieAlarm.fxml");
-
-
-            }
-            else if(obecnyCzas.compareTo(dataAlarmu) > 0)
-            {
-                napisDoWymagania = "Budzik nie może zostać ustawiony na przeszłość!";
-                zaladujScene("wymaganieAlarm.fxml");
-
-
-            }
-            else
-            {
-                wyslanieAlarmuDoBazy();
-                muzykaAlarm.setValue(null);
-                dataAlarm.setDateTimeValue(null);
-                pTytulAlarmu.setText(null);
-            }
-
-        }
-    }
 
     public void zamianaDniTygodniaNaPolskie(String dzienTygodnia)
     {

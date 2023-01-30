@@ -1,3 +1,16 @@
+.button
+{
+    -fx-background-color : #fd9898;
+    -fx-text-fill: #6d7185;
+
+}
+.button:hover{
+    -fx-background-color : #fab2b2;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+    -fx-text-fill: rgb(255, 255, 255);
+}
 .button1
 {
     -fx-background-color : #353a55;
@@ -45,6 +58,7 @@
     -fx-background-color : #b8b8b8;
     
 }
+
 .date-picker
 {
     -fx-background-color : #ffffff;

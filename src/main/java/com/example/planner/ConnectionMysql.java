@@ -39,6 +39,7 @@ public class ConnectionMysql {
 
     public static String[] tablicaAutor = new String[150];
 
+    public static String ikonaBazaSpotkanie;
 
     public static int iloscZadanBaza;
     public static int iloscCytatów;
@@ -78,6 +79,37 @@ public class ConnectionMysql {
 
     }
 
+    public static void dodajSpotkanieDoBazy(String tytul , String osoba , LocalDateTime data , String lokalizacja , String ikona)
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/planner", "root", "");
+            Statement stmt = con.createStatement();
+            int rs = stmt.executeUpdate("INSERT INTO `spotkania` VALUES (NULL,'" + tytul  +"' , '" + osoba + "' , '" + lokalizacja + "' , '" + ikona + "', '" + data + "' )");
+            con.close();
+        } catch (Exception evt) {
+            System.out.println(evt);
+        }
+    }
+
+    public static void wyswietlRekordBazaSpotkanie()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/planner", "root", "");
+            PreparedStatement st = con.prepareStatement("select ikona from spotkania order by data asc");
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            ikonaBazaSpotkanie = rs.getString(1);
+            System.out.println(ikonaBazaSpotkanie);
+
+
+            con.close();
+        } catch (Exception evt) {
+            System.out.println(evt);
+        }
+    }
 
     public static void wyswietlRekordBazaZadanie(){
         try {
@@ -289,7 +321,7 @@ public class ConnectionMysql {
     }
 
         public static void main(String[] args) throws ParseException {
-        wyswietlRekordBazaAlarm();
+        wyswietlRekordBazaSpotkanie();
 
     }
 
