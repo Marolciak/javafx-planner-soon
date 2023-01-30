@@ -18,6 +18,7 @@ public class ConnectionMysql {
     public static String muzykaBazaAlarm;
     public static String dataBazaAlarm;
     public static int iloscAlarmowBaza;
+    public static int iloscAlarmowBazaDzisiaj;
     public  static boolean czyIstniejeRekord;
 
     public static String dataNajwczesniejszyAlarm;
@@ -166,6 +167,12 @@ public class ConnectionMysql {
             ResultSet rs2 = st2.executeQuery("SELECT COUNT(id) as count from alarmy");
             rs2.next();
             iloscAlarmowBaza = rs2.getInt(1);
+
+            Statement stp = con.createStatement();
+            ResultSet rsp = stp.executeQuery("select COUNT(id) as count  from alarmy where SUBSTRING(data,1,10) = CURRENT_DATE;");
+            rsp.next();
+            iloscAlarmowBazaDzisiaj = rsp.getInt(1);
+
 
 
             //PreparedStatement st3 = con.prepareStatement("select * from alarmy where data > CURRENT_TIMESTAMP order by data asc limit 1;");

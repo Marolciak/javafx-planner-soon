@@ -1,6 +1,7 @@
 .button1
 {
     -fx-background-color : #353a55;
+    -fx-text-fill: #6d7185;
 
 }
 .button1:hover{
@@ -10,13 +11,6 @@
     -fx-border-width: 3px; 
     -fx-text-fill: rgb(255, 255, 255);
 }
-/*.button1:pressed{
-    -fx-background-color : #303551;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-border-width: 3px; 
-    -fx-text-fill: #6d7185 ;
-}*/
 
 .button2
 {
@@ -30,22 +24,42 @@
 {
     -fx-background-color: #4d4c4c;
 }
+.textfield
+{
+    -fx-background-color : #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+
+
+}
+.textfield:hover{
+    -fx-background-color : #b8b8b8;
+    
+}
+.date-picker
+{
+    -fx-background-color : #ffffff;
+
+
+}
+.date-picker:hover{
+    -fx-background-color : #b8b8b8;
+    
+}
 
 .button3
 {
-    -fx-background-color : #e0bf1b;
-    -fx-border-radius: 50px;
-    -fx-background-radius: 50px;
-     -fx-border-width: 3px;
-     -fx-border-color: black;
+    -fx-background-color : #738cf2;
+    -fx-text-fill: #6d7185;
+    
 }
 .button3:hover
 {
-    -fx-background-color:  #f2e28f
-}
-.button3:pressed
-{
-    -fx-background-color: #fab505;
+    -fx-background-color: #b0bef6 ;
+    -fx-background-radius: 30px;
+    -fx-border-radius : 30px;
+    -fx-text-fill: #ffffff;
+
 }
 .button4:hover
 {
@@ -56,11 +70,20 @@
   -fx-perspective: 1000px;
   -fx-effect: dropshadow(three-pass-box, rgba(0, 100, 53, 0.8), 10, 0, 0, 0);
 }
+.button-arrow{
+    -fx-background-color:  #fd9898;
+}
+.button-arrow:hover{
+    -fx-background-color: #fab2b2;
+}
 .logo-pane{
     -fx-background-color : #738cf2;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-border-width: 3px; 
+}
+.logo-pane:hover{
+    -fx-background-color : #5373f5;
 }
 .main-pane{
     -fx-background-color : #ebeef4;
@@ -75,7 +98,27 @@
     -fx-background-radius: 28px;
     -fx-border-width: 3px; 
 }
-
+.pane-left-2
+{
+    -fx-background-color : #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+}
+.pane-mockup
+{
+    -fx-background-color : #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+}
+.pane-left-1
+{
+    -fx-background-color : #738cf2;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 3px; 
+}
 .pane-radius
 {
     -fx-background-color: #2b2b2b;
@@ -94,11 +137,10 @@
 }
 .pane-zadanie
 {
-    -fx-background-color:  #f3d1a9;
-    -fx-border-radius: 50px;
-    -fx-background-radius: 50px;
-    -fx-border-width: 3px;
-    -fx-border-color: black;
+    -fx-background-color:  #fd9898;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+   
 }
 
 
